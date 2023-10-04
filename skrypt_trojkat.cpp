@@ -30,6 +30,9 @@ int main() {
         cout << "Podstawa jest za długa, aby utworzyć trójkąt." << endl;
         return 0;
     }
+    if (bok1^2 + bok2^2 == podstawa^2) {
+        cout << "To trojkat prostokatny" << endl;
+    }
     int liczeniep = 0.5 * (podstawa + bok2 + bok3);
     int trokatap = sqrt(liczeniep * (liczeniep - podstawa) * (liczeniep - bok2) * (liczeniep - bok3));
     int obwtrojkota = podstawa + bok1 + bok2;
