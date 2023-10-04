@@ -12,6 +12,11 @@ int main() {
     cin >> bok2;
     cout << "Podaj 3 wartość: ";
     cin >> bok3;
+    
+    if (bok3 >= bok1 + bok2 || bok2 >= bok1 + bok3 || bok1 >= bok2 + bok3) {
+        cout << "Podstawa jest za długa, aby utworzyć trójkąt." << endl;
+        return 0;
+    };
 
     int podstawa;
     if (bok1 >= bok2 && bok1 >= bok3) {
@@ -26,11 +31,7 @@ int main() {
         podstawa = bok3;
     }
 
-    if (podstawa >= bok1 + bok2) {
-        cout << "Podstawa jest za długa, aby utworzyć trójkąt." << endl;
-        return 0;
-    }
-    if (bok1^2 + bok2^2 == podstawa^2) {
+    if ((bok1^2) + (bok2^2) == (podstawa^2)) {
         cout << "To trojkat prostokatny" << endl;
     }
     int liczeniep = 0.5 * (podstawa + bok2 + bok3);
