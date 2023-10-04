@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>  
 #include <ctime> 
+#include <iomanip>
 
 using namespace std;
 
@@ -34,7 +35,8 @@ int main() {
     double srednia = static_cast<double>(suma) / 10.0;
 
     cout << "Najwiekszy element: " << najwiekszy << endl;
-    cout << "Srednia arytmetyczna: " << srednia << endl;
+    cout << "\033[1;31m";
+    cout << "Srednia arytmetyczna: " << setprecision(32) << fixed << srednia << endl;
 
     return 0;
 }
