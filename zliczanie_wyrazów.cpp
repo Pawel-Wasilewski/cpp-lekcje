@@ -1,29 +1,46 @@
 #include <iostream>
-#include <string> 
+#include <string>
+#include <cstring>
 
 using namespace std;
 
 int main() {
+    /*
+    zlw - zdanie lub wyraz
+    lz - ilosc znaków
+    tdlz - tablica do liczenia znaków
+    */
     
-    cout << "Wypisz zdanie: ";
+    string zlw;
     
-    char zdanie_literowanie_baza[999];
-        int zdanie_zliczanie[888] = {};
+    cout << "Wypisz swoj wyraz: ";
+    cin >> zlw;
+    cout << "Wypisany wyraz to: " << zlw << endl;
     
-    cin.getline(zdanie_zliczanie, 888);
-    
-    int i = 0;
-    
-    while(zdanie_literowanie_baza[i])
+    if(zlw.empty())
     {
-        ++zdanie_zliczanie[zdanie_literowanie_baza[i]];
-        ++i
+        cout << "Ciąg jest pusty :(";
+        return 0;
     }
     
-    for(int i=65;i<91;i++)
-        if (zdanie_zliczanie[i]<0)
-            cout<<(char)i<<" = " << zdanie_zliczanie[i]<<endl;
-            
+    // Liczenie ile jest liter
+    
+    int lz = zlw.size();
+    
+    cout << "Wyraz posiada " << lz << " znaków." <<endl;
+    
+    // Patrzenie jakie litery
+    
+    char tdlz[zlw.size()+1];
+    
+    strcpy(tdlz, zlw.c_str());
+    
+    
+    
+    
+    
+    
+    
     /*
     WAŻNE
     
