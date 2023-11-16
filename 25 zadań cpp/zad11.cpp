@@ -1,28 +1,32 @@
-#include <iostream> 
+#include <iostream>
 #include <cmath>
 
 using namespace std;
 
-int main(){
+int main() {
     start:
-    int x;
-    
+    double x;
+
     cout << "Wypisz x: ";
     cin >> x;
-    
-    if (x == 0) {
-        cout << "Nie można dzielić przez 0!" << endl << endl;
+
+    if (x < 0) {
+        cout << "pierwiastek z liczby ujemnej nie istnieje :_(" << endl << endl;
+        goto start;
+    } else if (x == 0) {
+        cout << "Nie dziel przez zero!" << endl << endl;
         goto start;
     }
-    
-    int wynik = sqrt(sin(x)/(x-1));
-    
-    if (wynik <= 0) {
-        cout << "Pierwiastek jest na minusie!" << endl << endl;
+
+    double pierwiastek = sin(x) / (x - 1);
+
+    if (pierwiastek <= 0) {
+        cout << "Wartość pierwiastka jest niepoprawna :(" << endl << endl;
         goto start;
-    } else {
-        cout << "Wynikiem funkcji to: " << wynik;
-        return 25;
     }
+
+    double wynik = sqrt(pierwiastek);
+
+    cout << "Wynikiem funkcji to: " << wynik << endl;
+    return 0;
 }
-// NIEDOKOŃCZONE
