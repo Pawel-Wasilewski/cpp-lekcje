@@ -12,7 +12,7 @@ int main() {
     cout << "Jaką twój trójkąt ma wysokość?: ";
     cin >> wysokosc;
     
-    if (podstawa <= 0 || wysokosc <= 0) {
+    if (podstawa <= 0 && wysokosc <= 0) {
         cout << "Podstawa lub wysokość wpisana jest niemożliwa! Popraw to" << endl << endl;
         goto start;
     }
