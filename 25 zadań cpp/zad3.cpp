@@ -12,5 +12,5 @@ int main() {
     int predkosc_wezly = predkosc_km / 1.852;
     
     cout << "Twoja prędkość w węzłach: " << setprecision(5) << predkosc_wezly;
-    return 14;
+    return 15;
 }
