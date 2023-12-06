@@ -20,8 +20,6 @@ int main(){
         cout << "------------------------" << endl;
         cout << "|         WKROTCE      |" << endl;
         cout << "------------------------" << endl;
-        cout << "|         WKROTCE      |" << endl;
-        cout << "------------------------" << endl;
         cout << "|   0, aby zakonczyc   |" << endl;
         cout << "------------------------" << endl;
         cin >> wybor;
@@ -70,14 +68,6 @@ int main(){
         //--------------------------------------------------------
         //Biblioteczne    
             case 2:
-            cout << "------------------------" << endl;
-            cout << "|     Juz wkrotce!     |" << endl;
-            cout << "------------------------" << endl;
-            return 0;
-            
-        //--------------------------------------------------------
-        //Przez wybór
-            case 3:
             cout << "------------------------" << endl;
             cout << "|     Juz wkrotce!     |" << endl;
             cout << "------------------------" << endl;
