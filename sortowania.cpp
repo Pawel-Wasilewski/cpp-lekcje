@@ -49,22 +49,22 @@ int main(){
             for(i = 0; i < n; i++) d[i] = rand() % 10;
             for(i = 0; i < n; i++) cout << setw(2) << d[i];
             cout << endl << endl;
+
   
 
             // Sortowanie:
-
             for(j = 0; j < n - 1; j++)
             for(i = 0; i < n - 1; i++)
             if(d[i] > d[i + 1]) swap(d[i], d[i + 1]);
-      
+ 
 
             // Wyświetlanie rezultatu:
-
             cout << "Po sortowaniu:" << endl;
             for(i = 0; i < n; i++) cout << setw(2) << d[i];
             cout << endl;
             return 0;
-            
+
+        
         //--------------------------------------------------------
         //Biblioteczne    
             case 2:
