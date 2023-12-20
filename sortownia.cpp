@@ -2,13 +2,12 @@
 #include <iomanip>
 #include <cstdlib>
 #include <ctime>
-#include <sys/time.h>
+#include <time.h>
 #include <omp.h>
 
 using namespace std;
 
-const int n = 100; // 'Wielkość' tablicy
-
+const int n = 10000; // 'Wielkość' tablicy
 void tworz_tabele(int d[]) {
     // Wypełnianie tablicy d[] liczbami "losowymi",
     // a następnie wyświetlanie jej zawartości:
@@ -21,6 +20,8 @@ void tworz_tabele(int d[]) {
 
 void babelkowe(int d[]) {
     // Sortowanie:
+    clock_t start = clock();
+    
     #pragma omp parallel for
     for (int j = 0; j < n - 1; j++)
         for (int i = 0; i < n - 1; i++)
@@ -29,10 +30,15 @@ void babelkowe(int d[]) {
     // Wyświetlanie rezultatu:
     cout << "Po sortowaniu:" << endl;
     for (int i = 0; i < n; i++) cout << setw(2) << d[i];
-    cout << endl;
+    clock_t end = clock();
+    double elapsed = double(end - start)/CLOCKS_PER_SEC;
+    
+    cout << endl << "Liczenie zajęło: "<< elapsed <<"s"<< endl;
 }
 
 void przez_wstawianie(int d[]) {
+    clock_t start = clock();
+    
     for (int i = 1; i < n; i++) {
         // Wstawienie w odpowiednie miejsce
         int pom = d[i];
@@ -47,10 +53,16 @@ void przez_wstawianie(int d[]) {
     }
     cout << "Po sortowaniu:" << endl;
     for (int i = 0; i < n; i++) cout << d[i] << " ";
+    clock_t end = clock();
+    double elapsed = double(end - start)/CLOCKS_PER_SEC;
+    
+    cout << endl << "Liczenie zajęło: "<< elapsed <<"s"<< endl;
 }
 
 void przez_wybor(int d[]) {
     int i, j, min_idx;
+    clock_t start = clock();
+    
     for (i = 0; i < n - 1; i++) {
         // Znajdź indeks najmniejszego elementu w nieposortowanej części tablicy
         min_idx = i;
@@ -60,16 +72,23 @@ void przez_wybor(int d[]) {
         // Zamień najmniejszy element z pierwszym elementem nieposortowanej części
         swap(d[min_idx], d[i]);
     }
+    
+    cout << "Po sortowaniu:" << endl;
+    for (int i = 0; i < n; i++) cout << d[i] << " ";
+    clock_t end = clock();
+    double elapsed = double(end - start)/CLOCKS_PER_SEC;
+    
+    cout << endl << ("Time measured: %ld seconds.\n", elapsed);
 }
+
 
 int main() {
     int d[n];
-    struct timeval begin, end;
-    gettimeofday(&begin, 0);
+    
 x:
     int wybor;
     while (true) {
-        cout << "------------------------" << endl
+        cout <<endl<< "------------------------" << endl
              << "|      Wybierz typ:    |" << endl
              << "------------------------" << endl
              << "|      1. BABELKOWE    |" << endl
@@ -90,13 +109,7 @@ x:
             cout << "------------------------" << endl
                  << "|      Zakonczono.     |" << endl
                  << "------------------------" << endl;
-            gettimeofday(&end, 0);
-            long seconds = end.tv_sec - begin.tv_sec;
-            long microseconds = end.tv_usec - begin.tv_usec;
-            double elapsed = seconds + microseconds * 1e-6;
 
-            // No 'sum' variable in your code, removing the printf line for now
-            // printf("Result: %.20f\n", sum);
             return 0;
 
         //--------------------------------------------------------
@@ -105,15 +118,14 @@ x:
             cout << "------------------------" << endl;
             tworz_tabele(d);
             babelkowe(d);
-            goto x;
-
+            return 0;
         //--------------------------------------------------------
         // Biblioteczne (WSTAWIANIE)
         case 2:
             cout << "------------------------" << endl;
             tworz_tabele(d);
             przez_wstawianie(d);
-            goto x;
+            return 0;
 
         //--------------------------------------------------------
         // PRZEZ WYBÓR
@@ -121,7 +133,7 @@ x:
             cout << "------------------------" << endl;
             tworz_tabele(d);
             przez_wybor(d);
-            goto x;
+            return 0;
 
         //--------------------------------------------------------
 
