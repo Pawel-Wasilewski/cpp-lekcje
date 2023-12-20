@@ -25,13 +25,11 @@ void przez_wybor(int d[], int n){
    int i, j, min_idx;
    for (i = 0; i < n-1; i++){
       //Znajdź indeks najmniejszego elementu w nieposortowanej części tablicy
-      //Find the index of the smallest element in the unsorted part of the array
       min_idx = i;
       for (j = i+1; j < n; j++)
          if (d[j] < d[min_idx])
             min_idx = j;
       //Zamień najmniejszy element z pierwszym elementem nieposortowanej części
-      //Swap the smallest element with the first element of the unsorted part
       swap(d[min_idx], d[i]);
    }
 }
@@ -76,7 +74,7 @@ void przez_wstawianie(){
 }
 
 int main(){
-
+x:
    int wybor;
    while(true){
       cout << "------------------------" << endl
@@ -108,7 +106,7 @@ int main(){
          cout << "------------------------" << endl;
          tworz_tabele();
          babelkowe();
-         return 0;
+         goto x;
 
 
       //--------------------------------------------------------
@@ -117,16 +115,16 @@ int main(){
          cout << "------------------------" << endl;
          tworz_tabele();
          przez_wstawianie();
-         return 0;
+         goto x;
 
       //--------------------------------------------------------
       //PRZEZ WYBÓR
       
         case 3:
         cout << "------------------------" << endl
-         << "|       WKROTCE!!      |" << endl
-         << "------------------------" << endl;
-         return 0;
+         tworz_tabele();
+         przez_wybor();
+         goto x;
       
       //--------------------------------------------------------
 
@@ -136,6 +134,6 @@ int main(){
          << "------------------------" << endl
          << "|   Zacznij ponownie.  |" << endl
          << "------------------------" << endl;
-         return 0;
+         goto x;
       }
    }}
