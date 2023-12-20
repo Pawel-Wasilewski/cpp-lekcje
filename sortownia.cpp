@@ -7,14 +7,14 @@
 
 using namespace std;
 
-const int n = 10000; // 'Wielkość' tablicy
+const int n = 100000; // 'Wielkość' tablicy
 void tworz_tabele(int d[]) {
     // Wypełnianie tablicy d[] liczbami "losowymi",
     // a następnie wyświetlanie jej zawartości:
     srand(static_cast<unsigned>(time(NULL)));
     cout << "Przed sortowaniem: " << endl;
     for (int i = 0; i < n; i++) d[i] = rand() % 10;
-    for (int i = 0; i < n; i++) cout << setw(2) << d[i];
+    //for (int i = 0; i < n; i++) cout << setw(2) << d[i];
     cout << endl << endl;
 }
 
@@ -74,11 +74,11 @@ void przez_wybor(int d[]) {
     }
     
     cout << "Po sortowaniu:" << endl;
-    for (int i = 0; i < n; i++) cout << d[i] << " ";
+    //for (int i = 0; i < n; i++) cout << d[i] << " ";
     clock_t end = clock();
     double elapsed = double(end - start)/CLOCKS_PER_SEC;
     
-    cout << endl << ("Time measured: %ld seconds.\n", elapsed);
+    cout << endl << "Liczenie zajęło: "<< elapsed <<"s"<< endl;
 }
 
 
