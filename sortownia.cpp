@@ -4,10 +4,11 @@
 #include <cstdlib>
 #include <time.h>
 #include <omp.h>
+#include <sys/time.h>
 
 using namespace std;
 
-const int n = 10; // 'Wielkość' tablicy
+const int n = 100; // 'Wielkość' tablicy
 
 void tworz_tabele(){
    // Wypełnianie tablicy d[] liczbami "losowymi",
@@ -74,7 +75,9 @@ void przez_wstawianie(){
 }
 
 int main(){
-x:
+   struct timeval begin, end;
+   gettimeofday(&begin, 0);
+   x:
    int wybor;
    while(true){
       cout << "------------------------" << endl
@@ -98,6 +101,12 @@ x:
          cout << "------------------------" << endl
          << "|      Zakonczono.     |" << endl
          << "------------------------" << endl;
+            gettimeofday(&end, 0);
+       long seconds = end.tv_sec - begin.tv_sec;
+       long microseconds = end.tv_usec - begin.tv_usec;
+       double elapsed = seconds + microseconds*1e-6;
+    
+       printf("Result: %.20f\n", sum);
          return 0;
 
       //--------------------------------------------------------    
