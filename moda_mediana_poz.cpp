@@ -8,11 +8,11 @@
 using namespace std;
 
 void moda(){
-
+  //TO DO
 }
 
 void mediana(){
-
+    //TO DO
     
 }
 
