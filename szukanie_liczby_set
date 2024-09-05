@@ -15,13 +15,41 @@ void tworzenie(set<int>& sorcik, int ilosc){
     }
 }
 
-void szukanie(const set<int>& sorcik, int lewo, int prawo){
+bool szukanie(const set<int>& sorcik, int lewo, int prawo, int szukadlo){
     
-    int srodek = (lewo + prawo)/2;
+    int srodek;
+    int fala = 0;
+    bool znaleziono;
     
-    auto it = next(sorcik.begin(), srodek);
-    
-    cout << *it;
+    while(srodek == szukadlo) {
+        srodek = (lewo + prawo)/2;
+        
+        auto it_sor = next(sorcik.begin(), srodek);
+        
+        if(*it_sor < szukadlo) {
+            /* Jeszcze nie... */
+            
+            lewo = srodek;
+        }
+        if(*it_sor > szukadlo){
+            /* Jeszcze nie... */
+            
+            prawo = srodek;
+        }
+        if(*it_sor == szukadlo){
+            /* GG, mamy to */
+            
+            znaleziono = true;
+            return znaleziono;
+        }
+        if(lewo == prawo && *it_sor != szukadlo) {
+            /* Nie ma liczby :( */
+            
+            znaleziono = false;
+            return znaleziono;
+        }
+        fala++;
+    }
     
 }
 
@@ -35,13 +63,19 @@ int main(){
     
     tworzenie(sorcik, ilosc);
     
-    cout << "Jaka liczba wariacie? ";
+    cout << "Jakiej liczby szukasz? ";
     cin >> szukadlo;
     
     int lewo = 0;
     int prawo = sorcik.size() - 1;
     
-    szukanie(sorcik, lewo, prawo);
+    
+    if(szukanie(sorcik, lewo, prawo, szukadlo)){
+        cout << "Znaleziono!";
+    }
+    else {
+        cout << "Nie ma :(";
+    }
     
     
     return 0;
