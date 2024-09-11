@@ -4,85 +4,101 @@
 #include <fstream>
 using namespace std;
 
-void tworzenie(set<int>& sorcik, int ilosc, ofstream& PlikSet){
-    
-    for(int i=0; i<ilosc; i++){
-        
+void tworzenie(set<int>& sorcik, int ilosc, ofstream& PlikSet) {
 
-    int a = rand() % 1000;
-    cout << a << " ";
-    sorcik.insert(a);
-    PlikSet << a << endl;
-    
-    }
+	for(int i=0; i<ilosc; i++) {
+
+
+		int a = rand() % 1000;
+		cout << a << " ";
+		sorcik.insert(a);
+		PlikSet << a << endl;
+
+	}
 }
 
-bool szukanie(const set<int>& sorcik, int lewo, int prawo, int szukadlo){
-    
-    int srodek;
-    int fala = 0;
-    bool znaleziono;
-    
-    while(srodek == szukadlo) {
-        srodek = (lewo + prawo)/2;
-        
-        auto it_sor = next(sorcik.begin(), srodek);
-        
-        if(*it_sor < szukadlo) {
-            /* Jeszcze nie... */
-            
-            lewo = srodek;
-        }
-        if(*it_sor > szukadlo){
-            /* Jeszcze nie... */
-            
-            prawo = srodek;
-        }
-        if(*it_sor == szukadlo){
-            /* GG, mamy to */
-            
-            znaleziono = true;
-            return znaleziono;
-        }
-        if(lewo == prawo && *it_sor != szukadlo) {
-            /* Nie ma liczby :( */
-            
-            znaleziono = false;
-            return znaleziono;
-        }
-        fala++;
-    }
-    
+bool szukanie(const set<int>& sorcik, int lewo, int prawo, int szukadlo) {
+
+	int srodek;
+	int fala = 0;
+	bool znaleziono;
+
+	while(srodek == szukadlo) {
+		srodek = (lewo + prawo)/2;
+
+		auto it_sor = next(sorcik.begin(), srodek);
+
+		if(*it_sor < szukadlo) {
+			/* Jeszcze nie... */
+
+			lewo = srodek;
+		}
+		if(*it_sor > szukadlo) {
+			/* Jeszcze nie... */
+
+			prawo = srodek;
+		}
+		if(*it_sor == szukadlo) {
+			/* Udało się! */
+
+			znaleziono = true;
+			return znaleziono;
+		}
+		if(lewo == prawo && *it_sor != szukadlo) {
+			/* Nie ma liczby :( */
+
+			znaleziono = false;
+			return znaleziono;
+		}
+		fala++;
+	}
+
 }
 
-int main(){
-    srand((unsigned)time(NULL));
-    set<int> sorcik;
-    int ilosc;
-    int szukadlo;
-    cout << "Podaj ilosc liczb: ";
-    cin >> ilosc;
-    
-    ofstream PlikSet("liczby_wSecie.txt");
-    
-    tworzenie(sorcik, ilosc, PlikSet);
-    
-    cout << endl << endl << "Jakiej liczby szukasz? ";
-    cin >> szukadlo;
-    
-    int lewo = 0;
-    int prawo = sorcik.size() - 1;
-    
-    
-    if(szukanie(sorcik, lewo, prawo, szukadlo)){
-        cout << "Znaleziono!";
-    }
-    else {
-        cout << "Nie ma :(";
-    }
-    
-    PlikSet.close();
-    
-    return 0;
-    
+int main() {
+	srand((unsigned)time(NULL));
+	set<int> sorcik;
+	int ilosc = 100;
+	int szukadlo;
+	int lewo = 0;
+	int prawo = sorcik.size() - 1;
+
+	cout << "Witaj uzytkowniku!" << endl << "Chcesz dane wczytac z pliku [Y] czy liczby maja byc wylosowane [N]? (generacja 100 liczb)" << endl;
+
+	char answer;
+	cin >> answer;
+
+	switch (answer) {
+	case 'Y':
+
+		break;
+
+	case 'N':
+
+		ofstream PlikSet("liczby_wSecie.txt");
+
+		tworzenie(sorcik, ilosc, PlikSet);
+
+		cout << endl << endl << "Jakiej liczby szukasz? ";
+		cin >> szukadlo;
+
+		if(szukanie(sorcik, lewo, prawo, szukadlo)) {
+			cout << "Znaleziono!";
+		}
+		else {
+			cout << "Nie ma :(";
+		}
+
+		PlikSet.close();
+
+		break;
+
+	default:
+		cout << "Nie wybrano/Wybrano zle!" << endl << endl;
+		goto x;
+		break;
+	}
+
+	return 0;
+
 }
