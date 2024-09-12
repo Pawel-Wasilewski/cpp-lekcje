@@ -4,14 +4,31 @@
 #include <fstream>
 using namespace std;
 
-void tworzenie(set<int>& sorcik, int ilosc, ofstream& PlikSet) {
+int mediana (set<int>& sorcik) {
+    // funkcja szukająca mediany w razie wybrania losowych liczb (inny set)
     
+    auto it_medi = sorcik.begin();
+    advance (it_medi, sorcik.size()/2);
+    
+    return *it_medi;
+}
+
+int mediana2 (set<int>& sorteca) {
+    // funkcja szukająca mediany w razie wybrania wczytywania z pliku (inny set)
+    
+    auto it_medi2 = sorteca.begin();
+    advance (it_medi2, sorteca.size()/2);
+    
+    return *it_medi2;
+}
+
+void tworzenie(set<int>& sorcik, int ilosc, ofstream& PlikSet) {
+    // funkcja losująca liczby i wstawiająca je do SET'a
   
 
 	for(int i=0; i<ilosc; i++) {
 
 		int a = rand() % 999 + 1;
-		cout << a << " ";
 		sorcik.insert(a);
 		
 		
@@ -25,6 +42,7 @@ void tworzenie(set<int>& sorcik, int ilosc, ofstream& PlikSet) {
 }
 
 bool szukanie(const set<int>& sorcik, int szukadlo) {
+    //w razie wyboru losowania, to ta funkcja szuka wpisanej liczby
 	
 	auto lewo = sorcik.begin();
 	auto prawo = sorcik.end();
@@ -43,30 +61,105 @@ bool szukanie(const set<int>& sorcik, int szukadlo) {
 	    else if (*srodek > szukadlo){
 	        prawo = srodek;
 	    }
-	    else{
-	        return false;
-	    }
-	}
-
 	
 	}
+	
+    return false;
+	
+	}
+	
+	bool wynajdowanie(const set<int>& sorteca, int szukajka) {
+	//w razie wyboru wczytywania, to ta funkcja szuka wpisanej liczby
+	
+	auto lewo = sorteca.begin();
+	auto prawo = sorteca.end();
+	
+	while(lewo != prawo){
+	    auto srodek = lewo;
+	    advance (srodek, distance(lewo, prawo)/2);
+	    
+	    
+	    if (*srodek == szukajka){
+	        return true;
+	    }
+	    else if (*srodek < szukajka){
+	        lewo = next(srodek);
+	    }
+	    else if (*srodek > szukajka){
+	        prawo = srodek;
+	    }
+	
+	}
+	
+    return false;
+	
+	}
+
 
 int main() {
 	srand((unsigned)time(NULL));
 	set<int> sorcik;
-	int ilosc = 100;
-	int szukadlo;
 	
+	int ilosc = 100;
+	//ilosc - ile liczb ma wylosować (jeśli wybrano losowanie)
+	
+	int szukadlo;
+	//za pomocą tego znajdziemy szukaną liczbę
 
-
+    char answer;
+    //odpowiedź na poniższe pytanie
+    
 	cout << "Witaj uzytkowniku!" << endl << "Chcesz wczytac dane z pliku? [Y/N] (N oznacza losowanie)" << endl;
-
-	char answer;
+	
 	cin >> answer;
+	string nazwapliku;
+	//do późniejszego wpisania nazwy pliku
 
-	if (answer == 'Y') {
+	if (answer == 'Y' || answer == 'y') {
 	    
-	} if (answer == 'N') {
+	    int szukajka;
+	    set<int> sorteca;
+	    
+	    cout << "Jaka jest nazwa pliku z którego ma wczytać? ";
+	    cin >> nazwapliku;
+	    
+	    fstream PlikWczyt;
+	    PlikWczyt.open(nazwapliku + ".txt");
+	    
+	    if(PlikWczyt.good()){
+	        //jeśli uzyskano dostęp do pliku...
+	        
+	        string napis;
+	        cout << "Zawartosc pliku:" << endl;
+	        
+	        while(!PlikWczyt.eof()){
+	            //póki nie dotrze do końca pliku...
+	            
+	            getline(PlikWczyt, napis);
+	            cout << napis << " ";
+	            sorteca.insert(stoi(napis));
+	        }
+	        
+	        cout << endl << endl << "Jakiej liczby szukasz? ";
+	        cin >> szukajka;
+	        
+	        if(wynajdowanie(sorteca,szukajka)){
+	            //jeśli 'wynajdowanie' zwróci "true"
+	            
+	            cout << "Znalzeiono!" << endl;
+	        }
+	        else{
+	            //jeśli 'wynajdowanie'  zwróci "false"
+	            cout << "Nie ma :(" << endl;
+	        }
+	        
+	        cout << "Mediana: " << mediana2(sorteca);
+	        
+	        PlikWczyt.close();
+	        
+	    }
+	    
+	} if (answer == 'N' || answer == 'n') {
 	    ofstream PlikSet("liczby_wSecie.txt");
 
 		tworzenie(sorcik, ilosc, PlikSet);
@@ -75,18 +168,29 @@ int main() {
 		cin >> szukadlo;
 
 		if(szukanie(sorcik, szukadlo)) {
-			cout << "Znaleziono!";
+		    // jeśli 'szukanie' zwróci "true"
+		    
+			cout << "Znaleziono!" << endl;
 		}
 		else{
-			cout << "Nie ma :(";
+		    // jeśli 'szukanie' zwróci "false"
+		    
+			cout << "Nie ma :(" << endl;
 		}
 
+        cout << "Mediana: " << mediana(sorcik);
+
 		PlikSet.close();
+		
 	} 
-	else {
+	if(answer != 'Y' && answer != 'y' && answer != 'N' && answer != 'n') {
+	    //jeśli nie odpowiedziano poprawnie
+	    
 	    cout << "Nie wybrano/Wybrano zle!" << endl << endl;
 
 	}
+	
+	
 
 	return 0;
 
