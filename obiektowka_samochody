@@ -1,0 +1,64 @@
+#include <iostream>
+
+using namespace std;
+
+union liczba {
+    int calkowita;
+    float rzeczywista;
+};    
+
+class Samochod{
+public:
+
+string marka;
+string model;
+int rocznik;
+liczba przebieg;
+    
+void wczytaj(){
+    cout << "WPROWADZANIE SAMOCHODU DO BAZY:" << endl;
+    cout << "-------------------------------" << endl;
+    cout << "Wpisz markę samochodu: " << endl;
+    cin >> marka;
+    
+    if(marka == "BMW" || marka == "bmw"){
+        cout << "A kierunkowskaz działa?" << endl;
+    }
+    
+    cout << "Wpisz model samochodu: " << endl;
+    cin >> model;
+    cout << "Wpisz rocznik samochodu: " << endl;
+    cin >> rocznik;
+    cout << "Jaki przebieg ma ten samochód? " << endl;
+    cin >> przebieg.rzeczywista;
+    cout << "-------------------------------" << endl;
+}
+
+void wypisz(){
+    cout << "Marka: " << marka << endl;
+    cout << "Model: " << model << endl;
+    cout << "Rocznik: " << rocznik << endl;
+    cout << "Przebieg: " << przebieg.rzeczywista << endl;
+    cout << "-------------------------------" << endl;
+}
+
+};
+
+
+
+int main()
+{
+    Samochod s1;
+    s1.wczytaj();
+    s1.wypisz();
+    
+    Samochod s2;
+    s2.wczytaj();
+    s2.wypisz();
+    
+    Samochod s3;
+    s3.wczytaj();
+    s3.wypisz();
+
+    return 0;
+}
