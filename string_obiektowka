@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+// KEVIN:
+
+class SprawdzaczLiter{
+    public:
+    
+    static int ZliczSamogloski(string slowo){
+        
+        if(slowo == " "){
+            return 0;
+        }
+        
+        int liczbaSamoglosek = 0;
+        string samogloski = "aąeęiouóyAĄEĘIOUÓY";
+        
+        for(char a : slowo){
+            for(char b : samogloski){
+                if(a == b){
+                    liczbaSamoglosek++;
+                }
+            }
+        }
+        
+        return liczbaSamoglosek;
+    }
+    
+    static void UsunPowtorzenia(string slowo){
+        
+        string noweSlowo;
+        int i = 0;
+        
+        while(i < slowo.length()){
+            if(slowo[i] == slowo[i+1]){
+                i++;
+            }
+            else if(slowo[i] != slowo[i+1]){
+                noweSlowo += slowo[i];
+                i++;
+            }
+        }
+        
+        cout << noweSlowo;
+    }
+    
+};
+
+int main()
+{
+    
+        string slowo;
+        
+        cout << "Witaj, Przybyszu, w Przychodni Słownej!" << endl;
+        cout << "---------------------------------------" << endl;
+        cout << "Jesteśmy najlepszym miejscem, w którym zbada Pan swoje słowo!" << endl
+        << "Oferujemy Liczenie Samogłosek oraz Usuwanie Podwójnych Liter!"<< endl;
+        cout << "Proszę wpisać słowo do zbadania. ";
+        cin >> slowo;
+        
+        int liczbaSamoglosek = SprawdzaczLiter::ZliczSamogloski(slowo);
+    
+        cout << "Liczba samogłosek w tym slowie wynosi " << liczbaSamoglosek << endl;
+        
+        cout << "Twoje słowo bez powtórzonych liter obok siebie: " << endl;
+        SprawdzaczLiter::UsunPowtorzenia(slowo);             
+        
+    
+
+    return 0;
+}
