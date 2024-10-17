@@ -14,6 +14,16 @@ string marka;
 string model;
 int rocznik;
 liczba przebieg;
+
+Samochod samochod(string marka, string model, int rocznik){
+    this->marka = marka;
+    this->model = model;
+    this->rocznik = rocznik;
+}
+
+~Samochod(){
+    cout << "Destruktor aktywowany!";
+}
     
 void wczytaj(){
     cout << "WPROWADZANIE SAMOCHODU DO BAZY:" << endl;
@@ -48,17 +58,20 @@ void wypisz(){
 
 int main()
 {
-    Samochod s1;
-    s1.wczytaj();
-    s1.wypisz();
+    //Samochod s1;
+    //s1.wczytaj();
+    //s1.wypisz();
     
-    Samochod s2;
-    s2.wczytaj();
-    s2.wypisz();
+    //Samochod s2;
+    //s2.wczytaj();
+    //s2.wypisz();
     
-    Samochod s3;
-    s3.wczytaj();
-    s3.wypisz();
+    //Samochod s3;
+    //s3.wczytaj();
+    //s3.wypisz();
+    
+    Samochod s4("Tesla", "Jakastam", 2013);
+    s4.wypisz();
 
     return 0;
 }
