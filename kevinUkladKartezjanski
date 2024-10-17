@@ -41,12 +41,43 @@ class punkt2w{
     
 };
 
+class punkt3w{
+    private:
+    int z;
+    
+    public:
+    
+    punkt3w(){
+        
+    }
+    ~punkt3w(){
+        
+    }
+    
+    void wczytaj(){
+        cout << endl << "Wpisz wspolrzedna Z: ";
+        cin >> z;
+        cout << endl;
+     
+    }
+    
+    void wypisz(){
+        cout << "Wspolrzedne punktu wynosza: (X: " << x << ", Y: " << y << ", Z: " << z << ")" << endl;
+    }
+    
+    
+};
+
 int main()
 {
     punkt2w jakisPunkt;
     jakisPunkt.wczytaj();
     jakisPunkt.wypisz();
     jakisPunkt.wektor2w();
+    
+    punkt3w ktorysPunkt;
+    ktorysPunkt.wczytaj();
+    ktorysPunkt.wypisz();
     
     
     return 0;
