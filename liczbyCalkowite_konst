@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class LiczbyCalkowite{
+public:
+
+int liczba;
+
+LiczbyCalkowite(){
+    
+}
+~LiczbyCalkowite(){
+    cout << endl << "EJ zniszczyłem...";
+}
+
+void wczytaj(){
+    cout << "WPISZ LICZBE CALKOWITA:" << endl;
+    cout << "-------------------------------" << endl;
+    cin >> liczba;
+    
+}
+
+void wypisz(){
+    
+    cout << "Wpisana liczba: " << liczba << endl;
+    
+}
+
+void abS(){
+    int wartoscBezwzgledna;
+    wartoscBezwzgledna = abs(liczba);
+    cout << "Wartosc bezwzgledna tej liczby wynosi: " << wartoscBezwzgledna << endl;
+}
+
+};
+
+
+
+int main()
+{
+    LiczbyCalkowite liczba1;
+    liczba1.wczytaj();
+    liczba1.wypisz();
+    liczba1.abS();
+    
+    LiczbyCalkowite liczba2;
+    liczba2.wczytaj();
+    liczba2.wypisz();
+    
+
+    return 0;
+}
