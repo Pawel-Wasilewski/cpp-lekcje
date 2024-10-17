@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class punkt2w{
+    private:
+    
+    int x;
+    int y;
+    
+    public:
+    
+    punkt2w(){
+        
+    }
+    ~punkt2w(){
+        cout << endl << "Destruktor aktywowany.";   
+    }
+    
+    void wczytaj(){
+        cout << "Wpisz wspolrzedna X: ";
+        cin >> x;
+        cout << endl << "Wpisz wspolrzedna Y: ";
+        cin >> y;
+        cout << endl;
+    }
+    
+    void wypisz(){
+        cout << "Wspolrzedne punktu wynosza: (" << x << ", " << y << ")" << endl;
+    }
+    
+    void wektor2w(){
+        punkt2w punktZero;
+        punktZero.x = 0;
+        punktZero.y = 0;
+        
+        cout << "Odleglosc wektora od punktu zerowego (0,0) mozna opisac w wektorze: ["
+        << (punktZero.x + x) << "; " << (punktZero.y + y) << "]";
+    }
+    
+};
+
+int main()
+{
+    punkt2w jakisPunkt;
+    jakisPunkt.wczytaj();
+    jakisPunkt.wypisz();
+    jakisPunkt.wektor2w();
+    
+    
+    return 0;
+}
