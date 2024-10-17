@@ -17,9 +17,8 @@ LiczbyCalkowite(){
 
 void wczytaj(){
     cout << "WPISZ LICZBE CALKOWITA:" << endl;
-    cout << "-------------------------------" << endl;
     cin >> liczba;
-    
+    cout << "-------------------------------" << endl;
 }
 
 void wypisz(){
@@ -45,9 +44,14 @@ int main()
     liczba1.wypisz();
     liczba1.abS();
     
+    cout << "-------------------------------" << endl;
+    
     LiczbyCalkowite liczba2;
     liczba2.wczytaj();
     liczba2.wypisz();
+    liczba2.abS();
+    
+    cout << "-------------------------------" << endl;
     
 
     return 0;
