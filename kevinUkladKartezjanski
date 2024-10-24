@@ -3,19 +3,17 @@
 
 using namespace std;
 
-class punkt2w{
-    private:
+class Punkt2w{
+    public:
     
     int x;
     int y;
     
-    public:
-    
-    punkt2w(){
+    Punkt2w(){
         
     }
-    ~punkt2w(){
-        cout << endl << "Destruktor aktywowany.";   
+    ~Punkt2w(){
+        cout << endl << "Zniszczono dwuwymiarówkę." << endl;   
     }
     
     void wczytaj(){
@@ -30,55 +28,92 @@ class punkt2w{
         cout << "Wspolrzedne punktu wynosza: (" << x << ", " << y << ")" << endl;
     }
     
-    void wektor2w(){
-        punkt2w punktZero;
+    static void wektor2w(int x, int y){
+        Punkt2w punktZero;
         punktZero.x = 0;
         punktZero.y = 0;
         
-        cout << "Odleglosc wektora od punktu zerowego (0,0) mozna opisac w wektorze: ["
-        << (punktZero.x + x) << "; " << (punktZero.y + y) << "]";
+        cout << "Odleglosc tego punktu do punktu zerowego (0,0) mozna opisac w wektorze: ["
+        << ((punktZero.x + x)*-1) << "; " << ((punktZero.y + y)*-1) << "]";
+    }
+    
+    void wektor2w(){
+        Punkt2w punktZero;
+        punktZero.x = 0;
+        punktZero.y = 0;
+        
+        cout << "Odleglosc tego punktu do punktu zerowego (0,0) mozna opisac w wektorze: ["
+        << ((punktZero.x + x)*-1) << "; " << ((punktZero.y + y)*-1) << "]";
     }
     
 };
 
-class punkt3w{
-    private:
-    int z;
-    
+class Punkt3w{
     public:
     
-    punkt3w(){
+    int x;
+    int y;
+    int z;
+    int choice;
+    
+    
+    Punkt3w(){
         
     }
-    ~punkt3w(){
-        
+    ~Punkt3w(){
+        cout << endl << "Zniszczono trójwymiarówkę." << endl;   
     }
     
     void wczytaj(){
+        cout << "Wpisz wspolrzedna X: ";
+        cin >> x;
+        cout << endl << "Wpisz wspolrzedna Y: ";
+        cin >> y;
         cout << endl << "Wpisz wspolrzedna Z: ";
         cin >> z;
         cout << endl;
-     
     }
     
     void wypisz(){
-        cout << "Wspolrzedne punktu wynosza: (X: " << x << ", Y: " << y << ", Z: " << z << ")" << endl;
+        cout << "Wspolrzedne punktu wynosza: (" << x << ", " << y << ", " << z << ")" << endl;
     }
     
+    void rzutuj(Punkt3w){
+        cout << "Chcesz XZ [1], XY [2] czy YZ [3]? ";
+        cin >> choice;
+        
+        switch(choice){
+            case 1:{
+            cout << "Wspolrzedne punktu wynosza: (" << x << ", " << "0, " <<  z << ")" << endl;
+            Punkt2w::wektor2w(x, z);
+            break;
+            }
+            case 2:{
+            cout << "Wspolrzedne punktu wynosza: (" << x << ", " << y <<  ", 0" << ")" << endl;
+            Punkt2w::wektor2w(x, y);
+            break;
+            }
+            case 3:{
+            cout << "Wspolrzedne punktu wynosza: (" << "0, " << y << ", " << z << ")" << endl;
+            Punkt2w::wektor2w(y, z);
+            break;
+        }}
+    }
     
 };
 
 int main()
 {
-    punkt2w jakisPunkt;
+    Punkt2w jakisPunkt;
     jakisPunkt.wczytaj();
     jakisPunkt.wypisz();
     jakisPunkt.wektor2w();
     
-    punkt3w ktorysPunkt;
-    ktorysPunkt.wczytaj();
-    ktorysPunkt.wypisz();
-    
+    Punkt3w innyPunkt;
+    innyPunkt.wczytaj();
+    innyPunkt.wypisz();
+    innyPunkt.rzutuj(innyPunkt);
+
     
     return 0;
 }
