@@ -1,0 +1,69 @@
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+
+using namespace std;
+
+class Tablica50{
+    private:
+    
+    int tablica[50];
+    
+    public:
+    
+    void wypelnijTab(){
+        for(int i = 0; i<50; i++){
+            tablica[i] = rand() % 101;
+        }
+    }
+    
+    void wyswietlTab(){
+        for(int i = 0; i<50; i++){
+            cout << tablica[i] << " ";
+        }
+    }
+    
+    int przeszukaj(int wartownik){
+        tablica[49] = wartownik;
+        int p = 0;
+        
+        while(tablica[p] != wartownik){
+            p++;
+        }
+        
+        if(p<49){
+            return p;
+        }
+        
+        else{
+            return -1;
+        }
+    }
+    
+};
+
+int main()
+{
+    Tablica50 tabliczunia;
+    int szukana;
+    
+    tabliczunia.wypelnijTab();
+    
+    cout << "Zawartość tablicy: " << endl;
+    tabliczunia.wyswietlTab();
+    cout << endl;
+    
+    cout << "Jakiego elementu szukasz w tablicy?"<< endl;
+    cin >> szukana;
+    
+    int wynik = tabliczunia.przeszukaj(szukana);
+    
+    if(wynik != -1){
+        cout << "Znaleziono wartownika! Jest na elemencie " << wynik << "(Liczone od 0)";
+    }
+    else{
+        cout << "Nie znaleziono!";
+    }
+    
+    return 0;
+}
