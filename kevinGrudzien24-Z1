@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <algorithm>
+
+using namespace std;
+
+class Tablica10{
+    public:
+    
+    int tablica[10];
+    
+    void wypelnijTab(){
+        for(int i = 0; i<10; i++){
+            tablica[i] = rand() % 10;
+        }
+    }
+    
+    void wyswietlTab(){
+        for(int i=0; i<10; i++){
+            cout << tablica[i] << " ";
+        }
+    }
+    
+    void sortuj(){
+        sort(tablica, tablica+ 10, greater<int>());
+    }
+};
+
+int main()
+{
+    Tablica10 tabliczka;
+    
+    cout << "Zawartość tablicy: " << endl;
+    tabliczka.wypelnijTab();
+    tabliczka.wyswietlTab();
+    
+    cout << endl;
+    
+    cout << "Posortowana: " << endl;
+    tabliczka.sortuj();
+    tabliczka.wyswietlTab();
+
+    
+    return 0;
+}
