@@ -1,0 +1,78 @@
+//DO DOKOŃCZENIA
+
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+
+using namespace std;
+
+class Funkcja{
+    public:
+    
+    int a;
+    int b;
+    int c;
+    
+    int licznik;
+    
+    Funkcja(){
+        cout << "Konstruktor aktywowany" << endl;
+        a = 1;
+        b = 0;
+        c = 0;
+    }
+    ~Funkcja(){
+        cout << "Zniszczono obiekt."
+    }
+    
+    void wpisz(){
+        licznik = 0;
+        
+        cout << "Wpisz wartość a: "<< endl;
+        cin >> a;
+        
+        if(a != 0){
+            licznik++;
+        }
+        
+        cout << "Wpisz wartość b: "<< endl;
+        cin >> b;
+        
+        if(b != 0){
+            licznik++;
+        }
+        
+        cout << "Wpisz wartość c: "<< endl;
+        cin >> c;
+        
+        if(c != 0){
+            licznik++;
+        }
+    }
+    
+    void zerowe(int a, int b, int c){
+        int delta;
+        delta = ((b*b) - (4*a*c));
+        
+        if(delta<0){
+            cout << "Brak miejsc zerowych!" << endl;
+        }
+        
+        else if(delta=0){
+            cout << "Miejsce zerowe wynosi " << ((b*-1)/2*a);
+        }
+        
+        else{
+            cout << "Miejsca zerowe tej funkcji to " << (((b*-1) - sqrt(delta))/2*a) << " oraz " 
+            << (((b*-1) + sqrt(delta))/2*a);
+        }
+    }
+    
+};
+
+int main()
+{
+    
+    
+    return 0;
+}
