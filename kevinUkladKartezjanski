@@ -36,8 +36,10 @@ class Punkt2w{
         punktZero.x = 0;
         punktZero.y = 0;
         
-        cout << "Odleglosc tego punktu do punktu zerowego (0,0) mozna opisac w wektorze: ["
-        << ((punktZero.x + x)*-1) << "; " << ((punktZero.y + y)*-1) << "]";
+        float wynik = sqrt(((x*x)+(y*y)));
+        
+        cout << "Długość wektora ["
+        << ((punktZero.x + x)*-1) << "; " << ((punktZero.y + y)*-1) << "] wynosi " << wynik;
     }
     
     float getX(){
