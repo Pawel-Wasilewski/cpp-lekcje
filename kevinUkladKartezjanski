@@ -4,10 +4,12 @@
 using namespace std;
 
 class Punkt2w{
-    public:
+    private:
     
-    int x;
-    int y;
+    float x;
+    float y;
+    
+    public:
     
     Punkt2w(){
         
@@ -28,7 +30,8 @@ class Punkt2w{
         cout << "Wspolrzedne punktu wynosza: (" << x << ", " << y << ")" << endl;
     }
     
-    static void wektor2w(int x, int y){
+    
+    void wektor2w(float x, float y){
         Punkt2w punktZero;
         punktZero.x = 0;
         punktZero.y = 0;
@@ -37,13 +40,12 @@ class Punkt2w{
         << ((punktZero.x + x)*-1) << "; " << ((punktZero.y + y)*-1) << "]";
     }
     
-    void wektor2w(){
-        Punkt2w punktZero;
-        punktZero.x = 0;
-        punktZero.y = 0;
-        
-        cout << "Odleglosc tego punktu do punktu zerowego (0,0) mozna opisac w wektorze: ["
-        << ((punktZero.x + x)*-1) << "; " << ((punktZero.y + y)*-1) << "]";
+    float getX(){
+        return x;
+    }
+    
+    float getY(){
+        return y;
     }
     
 };
@@ -51,9 +53,9 @@ class Punkt2w{
 class Punkt3w{
     public:
     
-    int x;
-    int y;
-    int z;
+    float x;
+    float y;
+    float z;
     int choice;
     
     
@@ -85,17 +87,23 @@ class Punkt3w{
         switch(choice){
             case 1:{
             cout << "Wspolrzedne punktu wynosza: (" << x << ", " << "0, " <<  z << ")" << endl;
-            Punkt2w::wektor2w(x, z);
+            
+            Punkt2w testP;
+            testP.wektor2w(x, z);
             break;
             }
             case 2:{
             cout << "Wspolrzedne punktu wynosza: (" << x << ", " << y <<  ", 0" << ")" << endl;
-            Punkt2w::wektor2w(x, y);
+            
+            Punkt2w testP;
+            testP.wektor2w(x, y);
             break;
             }
             case 3:{
             cout << "Wspolrzedne punktu wynosza: (" << "0, " << y << ", " << z << ")" << endl;
-            Punkt2w::wektor2w(y, z);
+            
+            Punkt2w testP;
+            testP.wektor2w(y, z);
             break;
         }}
     }
@@ -107,7 +115,7 @@ int main()
     Punkt2w jakisPunkt;
     jakisPunkt.wczytaj();
     jakisPunkt.wypisz();
-    jakisPunkt.wektor2w();
+    jakisPunkt.wektor2w(jakisPunkt.getX(), jakisPunkt.getY());
     
     Punkt3w innyPunkt;
     innyPunkt.wczytaj();
