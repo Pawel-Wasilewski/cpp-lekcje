@@ -83,6 +83,7 @@ class Punkt3w{
     }
     
     void rzutuj(Punkt3w){
+        
         cout << "Chcesz XZ [1], XY [2] czy YZ [3]? ";
         cin >> choice;
         
@@ -107,7 +108,13 @@ class Punkt3w{
             Punkt2w testP;
             testP.wektor2w(y, z);
             break;
-        }}
+            }
+            default:{
+            cout << "Nie wpisano odpowiedniej cyfry!"<< endl;
+            }
+            
+        }
+        
     }
     
 };
