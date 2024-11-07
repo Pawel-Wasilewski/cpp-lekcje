@@ -72,15 +72,17 @@ class Tab_zad2 {
 
         while (i < 51)
         {
-            if (table[i] == table[50])
-            {
-                std::cout << table[i] << ',' << "index: " << i << std::endl;
-                break;
-            }
-            if (i == 50)
+
+            if (i == 49)
             {
                 std::cout << "-1" << std::endl;
                 break;
+            } else {
+                if (table[i] == table[50])
+                {
+                std::cout << table[i] << ',' << "index: " << i << std::endl;
+                break;
+                }
             }
             i++;
         }
@@ -89,7 +91,7 @@ class Tab_zad2 {
 };
 class Del_zad3 {
     private:
-        int a, b, c;
+        int a, b, c, delta;
     public:
         Del_zad3() {
             a = 1;
@@ -123,13 +125,13 @@ class Del_zad3 {
         void zerowe() {
             if (a == 0)
             {
-                int fx = -c/b;
-                
+                float fx = -c/b;
+                std::cout << "m0(fx) = [" << fx << ", 0]";
             }
             else
             {
                 int bpow = pow(b, 2);
-                int delta = bpow - 4*a*c;
+                delta = bpow - 4*a*c;
 
                 if(delta > 0) 
                 {
@@ -148,10 +150,27 @@ class Del_zad3 {
                 {
                     std::cout << "m0 = 0" << std::endl;
                 }
+            }  
+        }
+        void fx() {
+            int x;
+            float y;
+            
+            std::cout << "Podaj [X]: ";
+            std::cin >> x;
+
+            if (a = 0)
+            {
+                y = x + b;
             }
-            
-            
-            
+            else
+            {
+                y = a*pow(x, 2) + b*x + c;
+            }
+            std::cout << "y = " << y << std::endl;
+        }
+        ~Del_zad3() {
+            std::cout << "Zniszczono obiekt typu Del" << std::endl;
         }
 };
 
@@ -168,6 +187,15 @@ int main() {
     t2->search();
 
     delete t2;
+
+    Del_zad3 *t3 = new Del_zad3();
+
+    if (t3->insert_data())
+    {
+        t3->zerowe();
+        t3->fx();
+    }
+    delete t3;
 
     return 0;
 }
