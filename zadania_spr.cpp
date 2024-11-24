@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <cmath>
 #include <ctime>
+#include <queue>
 
 class Tab_zad1 {
     private:
@@ -40,6 +41,9 @@ class Tab_zad1 {
         std::cout << "Zniszczono obiekt Table" << std::endl;
     }
 };
+
+///*****************************************************************************************
+
 
 class Tab_zad2 {
     private:
@@ -86,9 +90,13 @@ class Tab_zad2 {
             }
             i++;
         }
-        
+
     }
 };
+
+///*****************************************************************************************
+
+
 class Del_zad3 {
     private:
         int a, b, c, delta;
@@ -133,10 +141,12 @@ class Del_zad3 {
                 int bpow = pow(b, 2);
                 delta = bpow - 4*a*c;
 
-                if(delta > 0) 
+                if(delta > 0)
                 {
-                    int x1 = (-b-sqrt(delta))/a*2;
-                    int x2 = (-b+sqrt(delta))/a*2;
+                    int x1;
+                    x1 = (-b - sqrt(delta)) / a * 2;
+                    int x2;
+                    x2 = (sqrt(delta) + -b) / a * 2;
 
                     std::cout << "x1 = [" << x1 << ", 0], x2 = [" << x2 << ", 0]" << std::endl;
                 }
@@ -150,16 +160,16 @@ class Del_zad3 {
                 {
                     std::cout << "m0 = 0" << std::endl;
                 }
-            }  
+            }
         }
         void fx() {
             int x;
             float y;
-            
+
             std::cout << "Podaj [X]: ";
             std::cin >> x;
 
-            if (a = 0)
+            if (a == 0)
             {
                 y = x + b;
             }
@@ -174,21 +184,83 @@ class Del_zad3 {
         }
 };
 
+
+///*****************************************************************************************
+
+
+class QueueZad4 {
+    private:
+        std::queue<int> qu;
+        void insert_data() {
+            for (int i = 0; i < 10; i++) {
+                qu.push(i*3);
+            }
+            for (auto e: qu) {
+                std::cout << e << std::endl;
+            }
+        }
+    public:
+        QueueZad4();
+
+        ~QueueZad4();
+        void pierwszy() {
+            int pierwszy;
+
+            pierwszy = qu.front();
+
+            std::cout << "pierwszy: " << pierwszy << std::endl;
+        }
+
+        void usunpierwszy() {
+            qu.pop();
+            for (auto e: qu) {
+                std::cout << e << std::endl;
+            }
+        }
+
+        void dodaj_na_koniec() {
+            qu.push(69);
+            for (auto e: qu) {
+                std::cout << e << std::endl;
+            }
+        }
+
+        bool pusta() {
+            if (qu.size() == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+};
+QueueZad4::QueueZad4() {
+    std::queue<int> qu_co = qu;
+    insert_data();
+    std::cout << "Stworzono obiekt typu Queue" << std::endl;
+}
+QueueZad4::~QueueZad4() {
+    std::cout << "Zniszczono obiekt typu Queue" << std::endl;
+}
+
+
+///*****************************************************************************************
+
+
 int main() {
-    Tab_zad1 *t1 = new Tab_zad1();
+    auto *t1 = new Tab_zad1();
     t1->generate();
     t1->reverse();
 
     delete t1;
 
-    Tab_zad2 *t2 = new Tab_zad2();
+    auto *t2 = new Tab_zad2();
     t2->generate();
     t2->assignwartownik();
     t2->search();
 
     delete t2;
 
-    Del_zad3 *t3 = new Del_zad3();
+    auto *t3 = new Del_zad3();
 
     if (t3->insert_data())
     {
@@ -196,6 +268,18 @@ int main() {
         t3->fx();
     }
     delete t3;
+
+    auto *t4 = new QueueZad4();
+    t4->pierwszy();
+    t4->usunpierwszy();
+    t4->dodaj_na_koniec();
+
+    if (t4->pusta()) {
+        std::cout << "true" << std::endl;
+    } else {
+        std::cout << "false" << std::endl;
+    }
+
 
     return 0;
 }
