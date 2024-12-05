@@ -5,6 +5,11 @@
 
 using namespace std;
 
+/*
+Autor: Kevin 
+Data wykonania: 6 listopad
+*/
+
 class Tablica10{
     public:
     
