@@ -4,6 +4,11 @@
 
 using namespace std;
 
+/*
+Autor: Kevin 
+Data wykonania: 7 listopad
+*/
+
 class Tablica50{
     private:
     
