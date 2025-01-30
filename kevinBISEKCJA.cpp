@@ -5,45 +5,46 @@ using namespace std;
 
 class Funkcja{
     public:
-    int x;
     
-    Funkcja(int x) : x(x) {}
-    
-    virtual int wartosc(int x) = 0;
+    virtual double wartosc(double x) = 0;
 };
 
 class Funkcja_Liniowa : public Funkcja{
     public:
-    int a;
-    int b;
+    // Pozdrawiam serdecznie :P
+    double a, b;
     
-    Funkcja_Liniowa(int ojej, int ajaj, int nwm) : a(ojej), b(ajaj), Funkcja(nwm){}
+    Funkcja_Liniowa(double a, double b) : a(a), b(b) {}
     
-    int wartosc(int x) override{
-        int wynik = a*x+b;
-        return wynik;
+    double wartosc(double x) override {
+        return a * x + b;
     }
-    
-    //TODO: Bisekcja
-  //TODO: Bisekcja      //TODO: Bisekcja
-//TODO: Bisekcja        //TODO: Bisekcja
-//TODO: Bisekcja
-//TODO: Bisekcja
-//TODO: Bisekcja        //TODO: Bisekcja
-  //TODO: Bisekcja      //TODO: Bisekcja
-    //TODO: Bisekcja
     
 };
 
+double bisekcja(Funkcja *xf, int p, int k, double d){
+    double war;
+    for(double i = p; i >= k; i += d){
+        
+        war = xf->wartosc(i);
+        if(war == 0) {
+            cout << war<< endl;
+            i = 99999;
+        }
+    }
+    return war;
+
+    //NIE MAM POJĘCIA CO TU NIE TAK
+}
+
 int main()
 {
-    cout<<"Hello World";
+    cout<<"Hello World" << endl;
     
-    Funkcja_Liniowa f1(12,6,3);
+    Funkcja_Liniowa f1(2,-3);
     
-    int rezultat = f1.wartosc(f1.x);
-    
-    cout << rezultat;
+    double wartosc = bisekcja(&f1, 0, 10, 0.1);
+    cout << wartosc;
 
     return 0;
 }
