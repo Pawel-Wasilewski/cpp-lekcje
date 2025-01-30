@@ -22,19 +22,24 @@ class Funkcja_Liniowa : public Funkcja{
     
 };
 
-double bisekcja(Funkcja *xf, int p, int k, double d){
-    double war;
-    for(double i = p; i >= k; i += d){
-        
-        war = xf->wartosc(i);
-        if(war == 0) {
-            cout << war<< endl;
-            i = 99999;
-        }
+double bisekcja(Funkcja *xf, double p, double k, double d){
+    
+    while((k-p)>=d){
+    double srodek = (p+k)/2;
+    double srodek_fun = xf->wartosc(srodek);
+    
+    if(srodek_fun == 0){
+        return srodek_fun;
     }
-    return war;
-
-    //NIE MAM POJĘCIA CO TU NIE TAK
+    if((xf->wartosc(p) > 0 && srodek_fun < 0) || (xf->wartosc(p) < 0 && srodek_fun > 0)){
+        k = srodek;
+    }
+    else{
+        p = srodek;
+    }
+  }
+    
+    return (p+k)/2;
 }
 
 int main()
