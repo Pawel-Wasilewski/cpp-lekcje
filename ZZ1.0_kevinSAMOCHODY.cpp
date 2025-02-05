@@ -5,15 +5,14 @@ using namespace std;
 
 class Auto{
     public:
-    
     string marka;
     int rocznik;
     
-    void przebieg(){
+    virtual void przebieg(){
         int sumaPrz;
         int iloczynPrz = 2025 - rocznik;
         
-        sumaPrz = 10000 * iloczynPrz;
+        sumaPrz = 15000 * iloczynPrz;
         cout << "Przebieg tego samochodu wynosi " << sumaPrz << endl;
     }
     
@@ -22,19 +21,26 @@ class Auto{
 
 class Auto_ciezarowe : public Auto{
     public:
-    
     float ladownosc_max;
     
     void obciazenie(){
         int ladunek;
         float procentZal;
         
-        cout << "Podaj wagę ładunku. ";
+        cout << "Podaj wagę ładunku: ";
         cin >> ladunek;
         
-        procentZal = ladunek/ladownosc_max;
+        procentZal = static_cast<float>(ladunek)/ladownosc_max;
         
-        cout << "Procent obciążenia wynosi " << procentZal*100 << "%";
+        cout << "Procent obciążenia wynosi " << procentZal * 100 << "%" << endl;
+    }
+
+    void przebieg() override {
+        int sumaPrz;
+        int iloczynPrz = 2025 - rocznik;
+        
+        sumaPrz = 50000 * iloczynPrz;
+        cout << "Przebieg tego samochodu wynosi " << sumaPrz << endl;
     }
     
     Auto_ciezarowe(string m, int r, float lm) : Auto(m, r), ladownosc_max(lm) {}
@@ -42,7 +48,6 @@ class Auto_ciezarowe : public Auto{
 
 class Auto_sportowe : public Auto{
     public:
-    
     int przyspieszenie;
     
     void droga(){
@@ -50,7 +55,7 @@ class Auto_sportowe : public Auto{
         int czasDr = 0;
         int drogaPocz = 0;
         
-        cout << "Dla jakiej odległości podliczyć? (w metrach) ";
+        cout << "Dla jakiej odległości podliczyć? (w metrach): ";
         cin >> odleglosc;
         
         if(odleglosc > 402.336){
@@ -61,14 +66,20 @@ class Auto_sportowe : public Auto{
         do{
             drogaPocz = drogaPocz + przyspieszenie;
             czasDr++;
-        }
-        while(drogaPocz <= odleglosc);
+        } while(drogaPocz <= odleglosc);
         
-        cout << "Ten samochód pokonuje " << odleglosc << " metrow w około " << czasDr << " sekund!" << endl;
+        cout << "Ten samochód pokonuje " << odleglosc << " metrów w około " << czasDr << " sekund!" << endl;
+    }
+
+    void przebieg() override {
+        int sumaPrz;
+        int iloczynPrz = 2025 - rocznik;
+        
+        sumaPrz = 10000 * iloczynPrz;
+        cout << "Przebieg tego samochodu wynosi " << sumaPrz << endl;
     }
     
     Auto_sportowe(string m, int r, int p) : Auto(m, r), przyspieszenie(p) {}
-    
 };
 
 int main()
@@ -145,7 +156,7 @@ int main()
         cout << "Nie wpisano liczby/wpisano złą liczbę!" << endl;
     }
     
-    } while (wybor != 1 && wybor !=2 && wybor != 3);
+    } while (wybor != 1 && wybor != 2 && wybor != 3);
     
     cout << "---------------------------" << endl;
     cout << " DZIĘKUJEMY ZA ODWIEDZENIE " << endl;
