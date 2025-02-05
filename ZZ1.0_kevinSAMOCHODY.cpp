@@ -13,7 +13,7 @@ class Auto{
         int sumaPrz;
         int iloczynPrz = 2025 - rocznik;
         
-        sumaPrz = 15000 * iloczynPrz;
+        sumaPrz = 10000 * iloczynPrz;
         cout << "Przebieg tego samochodu wynosi " << sumaPrz << endl;
     }
     
