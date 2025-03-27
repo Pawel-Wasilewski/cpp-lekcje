@@ -1,56 +1,60 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
-void wczytajInt(int liczba1, int liczba2){
-    while(true){
-        try{
+void wczytajInt(int &liczba1, int &liczba2) {
+    while (true) {
+        try {
+            string input;
             cout << "Podaj liczbę 1 -> ";
-            cin >> liczba1;
-    
-            if(cin.fail()){
-                cin.clear();
-                cin.ignore(1000,'\n');
-        
-                throw runtime_error("Postaraj się bardziej:");
+            cin >> input;
+
+            for (char c : input) {
+                if (!isdigit(c) && c != '-' && c != '+') {
+                    throw runtime_error("Postaraj się bardziej:");
+                }
             }
-            
+
+            liczba1 = stoi(input);
             break;
-        }
-        catch(const exception& e){
+
+        } catch (const exception &e) {
             cout << e.what() << endl;
         }
-        
     }
     
-    while(true){
-        try{
+    while (true) {
+        try {
+            string input;
             cout << "Podaj liczbę 2 -> ";
-            cin >> liczba2;
-    
-            if(cin.fail()){
-                cin.clear();
-                cin.ignore(1000,'\n');
-        
-                throw runtime_error("Postaraj się bardziej:");
+            cin >> input;
+
+            for (char c : input) {
+                if (!isdigit(c) && c != '-' && c != '+') {
+                    throw runtime_error("Postaraj się bardziej:");
+                }
             }
-            
+
+            liczba2 = stoi(input);
             break;
-        }
-        catch(const exception& e){
+
+        } catch (const exception &e) {
             cout << e.what() << endl;
         }
-        
     }
+    
+    
 }
 
-int main()
-{
+
+int main() {
     int liczba1, liczba2;
-    
+
     wczytajInt(liczba1,liczba2);
-    
-    cout << "Wynik: " << liczba1+liczba2;
+
+    cout << "Wynik: " << liczba1 + liczba2 << endl;
 
     return 0;
 }
+
