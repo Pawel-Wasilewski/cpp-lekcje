@@ -11,7 +11,7 @@ void wczytajInt(int &liczba1, int &liczba2) {
             cin >> input;
 
             for (char c : input) {
-                if (!isdigit(c) && c != '-' && c != '+') {
+                if (!isdigit(c)) {
                     throw runtime_error("Postaraj się bardziej:");
                 }
             }
@@ -31,7 +31,7 @@ void wczytajInt(int &liczba1, int &liczba2) {
             cin >> input;
 
             for (char c : input) {
-                if (!isdigit(c) && c != '-' && c != '+') {
+                if (!isdigit(c)) {
                     throw runtime_error("Postaraj się bardziej:");
                 }
             }
