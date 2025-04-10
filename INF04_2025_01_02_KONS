@@ -1,0 +1,73 @@
+#include <iostream>
+
+using namespace std;
+
+class Urzadzenie{
+    public:
+    void wyswietlKomunikat(string komunikat){
+        cout << komunikat;
+    }
+};
+
+class Pralka : public Urzadzenie{
+    private:
+    int numerProg = 0;
+    
+    public:
+    int ustawNumer(int numer){
+        if(numer >=1 && numer <= 12){
+            numerProg = numer;
+            wyswietlKomunikat("Program został ustawiony\n");
+        }
+        else{
+            numerProg = 0;
+            wyswietlKomunikat("Podano niepoprawny numer programu\n");
+        }
+        
+        return numer;
+    }
+};
+
+class Odkurzacz : public Urzadzenie{
+    private:
+    bool stanOdkurz = false;
+    
+    public:
+    void on(){
+        if(stanOdkurz == false){
+            stanOdkurz = true;
+            wyswietlKomunikat("Odkurzacz włączono\n");
+        }
+    }
+    
+    void off(){
+        if(stanOdkurz == true){
+            stanOdkurz = false;
+            wyswietlKomunikat("Odkurzacz wyłączono\n");
+        }
+    }
+    
+};
+
+int main()
+{
+    int wybor;
+    
+    Pralka pralka;
+    Odkurzacz odkurzacz;
+    Urzadzenie urzadzenie;
+    
+    cout<<"Podaj numer prania 1...12" << endl;
+    cin >> wybor;
+    pralka.ustawNumer(wybor);
+    
+    odkurzacz.on();
+    odkurzacz.on();
+    odkurzacz.on();
+    
+    urzadzenie.wyswietlKomunikat("Odkurzacz wyłądował się\n");
+    
+    odkurzacz.off();
+
+    return 0;
+}
