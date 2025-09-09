@@ -1,0 +1,112 @@
+#include <iostream>
+#include <random>
+#include <cstdlib>
+#include <set>
+#include <fstream>
+
+using namespace std;
+
+void czyJestWartosc(multiset<int> i, int wartosc){
+    /*
+    Opis funkcji: Sprawdza, czy wpisana przez użytkownika liczba jest elementem w vectorze iteratorem.
+    
+    Nazwa funkcji: czyJestWartosc
+    
+    Argumenty funkcji: multiset przechowujący wylosowane i posortowane wartości
+                       liczba całkowita - wartość, której poszukuje użytkownik
+                       
+    Wartość zwracana przez funkcję: brak
+                                    
+    Autor: Kevin P
+    */
+    
+    int licznik = 0;
+    
+    for(auto it : i){
+        if(it == wartosc){
+            licznik++;
+            cout << "Szukana wartosc istnieje w multisecie." << endl;
+            break;
+        }
+    }
+    
+    if(licznik == 0){
+        cout << "Szukanej wartosci nie ma w multisecie.";
+    }
+    
+}
+
+void znajdzMediane(multiset<int> j){
+    /*
+    Opis funkcji: Oblicza/znajduje medianę w multisecie dzięki iteratorowi i przeciążeniu na typ float.
+    
+    Nazwa funkcji: znajdzMediane
+    
+    Argumenty funkcji: multiset przechowujący wylosowane i posortowane wartości
+                       
+    Wartość zwracana przez funkcję: brak
+                                    
+    Autor: Kevin P
+    */
+    
+    auto it = j.begin();
+    
+    auto it2 = next(it, 49);
+    auto it3 = next(it, 50);
+    
+    int element50 = *it2;
+    int element51 = *it3;
+    
+    cout << element50 << " ";
+    cout << element51;
+    
+    float mediana = static_cast<float> (element50 + element51)/2;
+    
+    cout << endl << "Mediana wynosi " << mediana;
+}
+
+int main()
+{
+    int wybor;
+    int szukanaWartosc;
+    cout << "Wylosowane (1) czy wczytane z pliku (2)? ";
+    cin >> wybor;
+    
+    if(wybor == 1){
+        multiset<int> wylosowaneLiczby;
+        
+        for(int i = 0; i <= 99; i++){
+            int wylosowana = rand() % 1000;
+            wylosowaneLiczby.insert(wylosowana);
+        }
+        
+        cout << "Losowanie przebieglo pomyslnie." << endl;
+        
+        cout << "Zawartosc: ";
+        
+        for(int i : wylosowaneLiczby){
+            cout << i << "; ";
+        }
+        
+        cout << endl << "==============================" << endl;
+        cout << "Jaka wartosc chcesz znalezc? ";
+        cin >> szukanaWartosc;
+        
+        czyJestWartosc(wylosowaneLiczby, szukanaWartosc);
+        
+        znajdzMediane(wylosowaneLiczby);
+    
+    }
+    else if(wybor == 2){
+        multiset<int> wczytaneLiczby;
+        
+        
+        
+    }
+    else{
+        cout << "Ta opcja nie istnieje.";
+    }
+    
+
+    return 0;
+}
