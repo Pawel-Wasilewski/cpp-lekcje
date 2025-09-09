@@ -99,8 +99,35 @@ int main()
     }
     else if(wybor == 2){
         multiset<int> wczytaneLiczby;
+        string liczbyZPliku;
+        string nazwaPliku;
         
+        cout << "Wprowadz nazwe pliku (z rozszerzeniem .txt): ";
+        cin >> nazwaPliku;
         
+        ifstream czytajPlik(nazwaPliku);
+        
+        while(getline(czytajPlik, liczbyZPliku)){
+            int liczba = stoi(liczbyZPliku);
+            
+            wczytaneLiczby.insert(liczba);
+        }
+        
+        czytajPlik.close();
+        
+        cout << "Zawartosc: ";
+        
+        for(int i : wczytaneLiczby){
+            cout << i << "; ";
+        }
+        
+        cout << endl << "==============================" << endl;
+        cout << "Jaka wartosc chcesz znalezc? ";
+        cin >> szukanaWartosc;
+        
+        czyJestWartosc(wczytaneLiczby, szukanaWartosc);
+        
+        znajdzMediane(wczytaneLiczby);
         
     }
     else{
