@@ -96,9 +96,16 @@ int main()
         
         cout << "Zawartosc: ";
         
+        ofstream WPiszDoPliku("Kevin_P.txt");
+        
         for(int i : wylosowaneLiczby){
             cout << i << "; ";
+            WPiszDoPliku << i << endl;
         }
+        
+        WPiszDoPliku.close();
+        
+        
         
         cout << endl << "==============================" << endl;
         cout << "Jaka wartosc chcesz znalezc? ";
