@@ -50,17 +50,29 @@ void znajdzMediane(multiset<int> j){
     */
     
     auto it = j.begin();
+    float mediana;
     
-    auto it2 = next(it, 49);
-    auto it3 = next(it, 50);
+    if(j.size()%2 == 0){
+        auto it2 = next(it, (j.size()/2)-1);
+        auto it3 = next(it, j.size()/2);
+        
+        int element50 = *it2;
+        int element51 = *it3;
     
-    int element50 = *it2;
-    int element51 = *it3;
-    
-    cout << element50 << " ";
-    cout << element51;
-    
-    float mediana = static_cast<float> (element50 + element51)/2;
+        cout << element50 << " ";
+        cout << element51;
+        
+        mediana = static_cast<float> (element50 + element51)/2;
+    }
+    else{
+        auto it4 = next(it, j.size()/2);
+        
+        int elementPolowa = *it4;
+        
+        cout << elementPolowa;
+        
+        mediana = elementPolowa;
+    }
     
     cout << endl << "Mediana wynosi " << mediana;
 }
